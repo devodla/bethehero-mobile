@@ -1,5 +1,7 @@
 {
   "main": "node_modules/expo/AppEntry.js",
+  "author": "Reynaldo Layme <layme.reynaldo@icloud.com>",
+  "license": "MIT",
   "scripts": {
     "start": "expo start",
     "android": "expo start --android",
@@ -15,8 +17,23 @@
     "react-native-web": "~0.11.7"
   },
   "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@commitlint/cli": "^8.3.5",
+    "@commitlint/config-conventional": "^8.3.4",
     "babel-preset-expo": "~8.0.0",
-    "@babel/core": "^7.0.0"
+    "cz-conventional-changelog": "^3.1.0",
+    "husky": "^4.2.3"
   },
-  "private": true
+  "private": true,
+  "husky": {
+    "hooks": {
+      "prepare-commit-msg": "exec < /dev/tty && git cz --hook || true",
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+    }
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
 }
